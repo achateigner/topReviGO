@@ -37,6 +37,7 @@
 #' selGenes <- sample(ls(hgu133aGO), 50)
 #' allGenes <-  factor(as.integer(ls(hgu133aGO) %in% selGenes))
 #' names(allGenes) <- ls(hgu133aGO)
+#' topReviGO(allGenes, "toto", "hgu133a", mapOrDb = "db")
 #' @export
 topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
                       mapOrDb = "map"){
@@ -77,7 +78,6 @@ topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
 
   # Localization of the revigoDownload.py script
   revigoDownloadLocation <- paste(system.file(package="topReviGO"),
-                                  "inst",
                                   "revigoDownload.py",
                                   sep="/")
   # separator <- if (.Platform$OS.type == "windows") ";" else ":"
