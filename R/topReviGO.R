@@ -31,8 +31,12 @@
 #' @param mapOrDb map if a map file is used, db if a database name is provided.
 #' @return A csv file containing the enriched GO terms and a treemap pdf file
 #' containing the image.
+#' @import topGO
 #' @examples
-#' # ToDo
+#' library(hgu133a.db)
+#' selGenes <- sample(ls(hgu133aGO), 50)
+#' allGenes <-  factor(as.integer(ls(hgu133aGO) %in% selGenes))
+#' names(allGenes) <- ls(hgu133aGO)
 #' @export
 topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
                       mapOrDb = "map"){
