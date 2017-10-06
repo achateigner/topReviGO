@@ -1,0 +1,17 @@
+Package: topReviGO
+Type: Package
+Date: 2017-10-06
+Title: Chain topGO and REViGO analyses to produce treemaps
+Version: 0.1.0
+Author: Aurelien Chateigner <aurelien.chateigner@gmail.com>
+Maintainer: Aurelien Chateigner <aurelien.chateigner@gmail.com>
+Description: This package takes a list of genes, a map file with the
+    correspondance between gene name and GO annotation and a prefix for the
+    output. It will then do a topGO analysis and send the results to the
+    REViGO (http://revigo.irb.hr/) website, to summarize the list of GO and
+    produce a treemap.
+License: CC BY-SA 4.0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: topGO, treemap, methods, utils
