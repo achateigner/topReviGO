@@ -49,5 +49,8 @@ it can also be the Cellular Component or the Molecular Function. One can use
 a installed db or a map file.
 }
 \examples{
-# ToDo
+library(hgu133a.db)
+selGenes <- sample(ls(hgu133aGO), 50)
+allGenes <-  factor(as.integer(ls(hgu133aGO) \%in\% selGenes))
+names(allGenes) <- ls(hgu133aGO)
 }
