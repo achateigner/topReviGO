@@ -29,6 +29,9 @@
 #' @param ontology "BP", "CC" or "MF" for Biological Process, Cellular Component
 #' or Molecular Function, this is the GO categories outputted by REViGO.
 #' @param mapOrDb map if a map file is used, db if a database name is provided.
+#' @param p the p-value for the weight Fisher test to accept the GO. The Ficher
+#' test based on weights takes multiple testing into account directly without
+#' further need to apply a fdr or bonferroni correction.
 #' @return A csv file containing the enriched GO terms and a treemap pdf file
 #' containing the image.
 #' @import topGO
@@ -37,10 +40,10 @@
 #' selGenes <- sample(ls(hgu133aGO), 50)
 #' allGenes <-  factor(as.integer(ls(hgu133aGO) %in% selGenes))
 #' names(allGenes) <- ls(hgu133aGO)
-#' topReviGO(allGenes, "toto", "hgu133a", mapOrDb = "db")
+#' topReviGO(allGenes, "toto", "hgu133a", mapOrDb = "db", p = 0.01)
 #' @export
 topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
-                      mapOrDb = "map"){
+                      mapOrDb = "map", p = 0.01){
   # Check that the geneList and prefix are provided
   if (missing(geneList) | missing(prefix) | missing(mapFile)){
     stop("geneList, prefix or mapFile is missing")
@@ -74,7 +77,10 @@ topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
   allRes <- topGO::GenTable(GOdata, weightFisher = resultWeight,
                      orderBy = "weightFisher", ranksOf = "weightFisher",
                      topNodes = length(topGO::score(resultWeight)))
-  allResInf1 <- allRes[allRes$weightFisher < 1,]
+  # Output the pvalues for the test
+  utils::write.table(allRes, file=paste0(prefix, "_weightFisher.csv"),
+                     quote=F, row.names=F, col.names=T)
+  allResInf1 <- allRes[allRes$weightFisher < p,]
 
   # Localization of the revigoDownload.py script
   revigoDownloadLocation <- paste(system.file(package="topReviGO"),
