@@ -2,7 +2,7 @@ Package: topReviGO
 Type: Package
 Date: 2017-10-06
 Title: Chain topGO and REViGO analyses to produce treemaps
-Version: 0.1.1
+Version: 0.1.2
 Author: Aurelien Chateigner <aurelien.chateigner@gmail.com>
 Maintainer: Aurelien Chateigner <aurelien.chateigner@gmail.com>
 Description: This package takes a list of genes, a map file with the

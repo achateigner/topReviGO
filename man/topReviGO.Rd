@@ -4,7 +4,8 @@
 \alias{topReviGO}
 \title{Chain topGO and REViGO analyses to produce treemaps}
 \usage{
-topReviGO(geneList, prefix, mapFile, ontology = "BP", mapOrDb = "map")
+topReviGO(geneList, prefix, mapFile, ontology = "BP", mapOrDb = "map",
+  p = 0.01)
 }
 \arguments{
 \item{geneList}{The gene list must be a csv file without column name, each
@@ -29,6 +30,10 @@ It can also be a Db name, thus one needs to change the option mapOrDb.}
 or Molecular Function, this is the GO categories outputted by REViGO.}
 
 \item{mapOrDb}{map if a map file is used, db if a database name is provided.}
+
+\item{p}{the p-value for the weight Fisher test to accept the GO. The Ficher
+test based on weights takes multiple testing into account directly without
+further need to apply a fdr or bonferroni correction.}
 }
 \value{
 A csv file containing the enriched GO terms and a treemap pdf file
@@ -53,5 +58,5 @@ library(hgu133a.db)
 selGenes <- sample(ls(hgu133aGO), 50)
 allGenes <-  factor(as.integer(ls(hgu133aGO) \%in\% selGenes))
 names(allGenes) <- ls(hgu133aGO)
-topReviGO(allGenes, "toto", "hgu133a", mapOrDb = "db")
+topReviGO(allGenes, "toto", "hgu133a", mapOrDb = "db", p = 0.01)
 }
