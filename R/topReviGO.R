@@ -82,7 +82,7 @@ topReviGO <- function(geneList, prefix, mapFile, ontology = "BP",
                      quote=F, row.names=F, col.names=T)
   allResInf1 <- allRes[allRes$weightFisher < p,]
   if(nrow(allResInf1) == 0){
-    stop("No gene has been found above the p value. Stopping now.
+    stop("No GO term has been found above the p value. Stopping now.
          Please try to increase the required p-value (option p).")
   }
   # Localization of the revigoDownload.py script

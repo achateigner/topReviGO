@@ -9,7 +9,8 @@ pip install mechanize
 
 You also need to install the dependancies topGO and hgu133a.db :
 ```r
-source("https://bioconductor.org/biocLite.R")
-biocLite("topGO")
-biocLite("hgu133a.db")
+install.packages("anyLib") # Just a little advertisement
+anyLib::anyLib("biocManager")
+install("topGO")
+install("hgu133a.db")
 ```
